@@ -1,0 +1,56 @@
+﻿@model List<AbcCompany.Models.ResellerViewModel>
+
+    @{
+        ViewData["Title"] = "Reseller Details"; 
+    }
+
+    <h3>@ViewData["Title"]</h3>
+    <hr />
+    <form>
+        <button asp-action="Create" asp-controller="Reseller" class="btn btn-primary">Create Reseller</button>
+        <table class="table table-responsive table-horver">
+            <thead>
+                <tr class="table-active">
+                    <th>Reseller Name</th>
+                    <th>E-mail</th>
+                    <th>Address</th>
+                    <th>Fax Number</th>
+                    <th>Contact Person Name</th>
+                    <th>Contact Person Phone Number</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if(Model != null && Model.Any())
+            {
+
+            }
+            else
+            {
+                <tr>
+                    <td colspan="6"></td>
+                    <div>
+                        No Employees Available at this movement!
+                    </div>
+                </tr>
+                @foreach(var reseller in Model)
+                {
+                    <tr>
+                        <td>@reseller.ResellerName</td>
+                        <td>@reseller.Email</td>
+                        <td>@reseller.Address</td>
+                        <td>@reseller.FaxNumber</td>
+                        <td>@reseller.ContactPersonName</td>
+                        <td>@reseller.ContactPersonPhoneNumber</td>
+                        <td>
+                            <div class="btn-group btn-group-sm">
+                                <a asp-controller="Reseller" asp-action="Edit" asp-route-id =" @reseller.Id" class="btn-primary">Edit</a>
+                                <a asp-controller="Reseller" asp-action="Edit" asp-route-id=" @reseller.Id" class="btn-danger">Delete</a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+        </table>
+    </form>
